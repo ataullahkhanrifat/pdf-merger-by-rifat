@@ -1,108 +1,114 @@
-# 🔄 PDF Merger Application
-*Developed by **Md Ataullah Khan Rifat***
+# PDF Merger Application
 
-A professional, secure, and user-friendly web-based PDF merging tool built with Flask and modern web technologies.
+A modern PDF merging tool that combines multiple PDF files into one. Built with Flask and Docker.
 
-## 🚀 **QUICK START - Choose Your Method**
-
-### 🐳 **Method 1: Docker (EASIEST)**
-*No Python installation required! Works on any system.*
-
-```bash
-git clone https://github.com/ataullahkhanrifat/pdf-merger-by-rifat
-cd pdf-merger-by-rifat
-docker-compose up --build
-```
-**🎉 Done!** Open http://localhost:5000
-
----
-
-### ⚡ **Method 2: One-Click Setup**
-
-**Windows Users:**
-```bash
-git clone https://github.com/ataullahkhanrifat/pdf-merger-by-rifat
-cd pdf-merger-by-rifat
-setup.bat
-```
-
-**Linux/Mac Users:**
-```bash
-git clone https://github.com/ataullahkhanrifat/pdf-merger-by-rifat
-cd pdf-merger-by-rifat
-chmod +x setup.sh && ./setup.sh
-```
-
----
-
-### 🛠️ **Method 3: Manual Setup**
-*For developers who want full control*
-
-```bash
-git clone https://github.com/ataullahkhanrifat/pdf-merger-by-rifat
-cd pdf-merger-by-rifat
-
-# Create virtual environment
-python -m venv venv
-
-# Activate virtual environment
-# Windows:
-venv\Scripts\activate
-# Linux/Mac:
-source venv/bin/activate
-
-# Install dependencies
-pip install -r requirements.txt
-
-# Run application
-python app.py
-```
-
-## 📋 System Requirements
-
-| Method | Requirements |
-|--------|-------------|
-| **Docker** | Docker & Docker Compose only |
-| **Automated** | Python 3.7+ |
-| **Manual** | Python 3.7+, pip, venv |
+**Developed by: Md Ataullah Khan Rifat**
 
 ## ✨ Features
 
-- 🖱️ **Drag & Drop**: Intuitive file upload
-- 🔄 **Reorder Files**: Change merge order easily
-- 📱 **Mobile Responsive**: Works on all devices
-- 🔒 **Secure**: File validation and cleanup
-- ⚡ **Fast Processing**: Optimized PDF engine
-- 🎨 **Modern UI**: Beautiful Tailwind CSS design
+- 🔄 **Unlimited PDF Merging** - Combine as many PDF files as you want
+- 🎯 **Drag & Drop Interface** - Easy file upload
+- 📋 **File Reordering** - Drag to reorder files before merging
+- 🔒 **Secure & Private** - Files automatically deleted after processing
+- 🐳 **Docker Ready** - Easy deployment
 
-## 🏗️ Architecture
+## 🚀 Quick Start (Docker - Recommended)
 
+### Prerequisites
+- Docker
+- Docker Compose
+
+### Installation
+
+1. **Navigate to project**
+   ```bash
+   cd "C:\Users\Rifat PC\Documents\Pdf Merger"
+   ```
+
+2. **Add your photo**
+   ```bash
+   cp Photo/* static/images/CV_Photo.jpg
+   ```
+
+3. **Run with Docker**
+   ```bash
+   docker-compose up --build
+   ```
+
+4. **Access**: `http://localhost:5000`
+
+## 🐍 Without Docker (Manual Setup)
+
+### Prerequisites
+- Python 3.8+ installed
+
+### Installation
+
+1. **Navigate to project**
+   ```bash
+   cd "C:\Users\Rifat PC\Documents\Pdf Merger"
+   ```
+
+2. **Create virtual environment**
+   ```bash
+   python -m venv venv
+   ```
+
+3. **Activate virtual environment**
+   ```bash
+   # Windows
+   venv\Scripts\activate
+   
+   # Linux/Mac
+   source venv/bin/activate
+   ```
+
+4. **Install dependencies**
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+5. **Add your photo**
+   ```bash
+   mkdir static\images
+   copy Photo\* static\images\CV_Photo.jpg
+   ```
+
+6. **Run the application**
+   ```bash
+   python app.py
+   ```
+
+7. **Access**: `http://localhost:5000`
+
+## 📋 Usage
+
+1. Upload PDF files (drag & drop or click)
+2. Reorder files if needed
+3. Click "Merge PDFs"
+4. Download merged file
+
+## ⚙️ Limits
+
+- **Max file size**: 50MB per PDF
+- **Number of files**: Unlimited
+- **Format**: PDF only
+
+## 🐛 Troubleshooting
+
+**Port 5000 in use?** Change port in `docker-compose.yml`:
+```yaml
+ports:
+  - "5001:5000"
 ```
-pdf-merger-by-rifat/
-├── app/
-│   ├── routes.py          # API endpoints
-│   ├── services/          # PDF processing logic
-│   ├── utils/             # Utilities & validation
-│   └── templates/         # Frontend UI
-├── Dockerfile             # Container configuration
-├── docker-compose.yml     # Easy deployment
-├── requirements.txt       # Python dependencies
-└── setup.sh/.bat         # Automated setup
+
+**Photo not showing?** Copy again:
+```bash
+cp Photo/* static/images/CV_Photo.jpg
 ```
 
-## 🚀 Deployment Options
-
-- **Local Development**: `docker-compose up`
-- **Heroku**: `git push heroku main`
-- **AWS/GCP**: Deploy container directly
-- **VPS**: Docker Compose on any server
-
-## 👨‍💻 Developer
-
-**Md Ataullah Khan Rifat**
-- GitHub: [@ataullahkhanrifat](https://github.com/ataullahkhanrifat)
-- Email: ataullahkhan.rifat@gmail.com
+**Python not found?** Install from: https://www.python.org/downloads/
 
 ---
 
-⭐ **Star this repository if you find it useful!**
+**Built with ❤️ by Md Ataullah Khan Rifat**

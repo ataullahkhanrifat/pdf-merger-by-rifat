@@ -1,59 +1,134 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PDF Merger - Combine Your PDFs</title>
+    <title>PDF Merger - Combine Your PDFs | Md Ataullah Khan Rifat</title>
+    <!-- Favicon using developer photo -->
+    <link rel="icon" type="image/jpeg" href="/static/images/CV_Photo.jpg">
+    <link rel="shortcut icon" type="image/jpeg" href="/static/images/CV_Photo.jpg">
+    <link rel="apple-touch-icon" href="/static/images/CV_Photo.jpg">
+    <meta property="og:image" content="/static/images/CV_Photo.jpg">
+    <meta property="og:title" content="PDF Merger - Md Ataullah Khan Rifat">
+    <meta property="og:description" content="Professional PDF merging tool developed by Md Ataullah Khan Rifat">
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.0/Sortable.min.js"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
         .drag-over {
-            @apply border-blue-500 bg-blue-50;
+            border-color: #3b82f6;
+            background-color: #dbeafe;
         }
+
+        .developer-badge {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .developer-photo {
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.05);
+            }
+        }
+
         .file-item {
             transition: all 0.3s ease;
         }
+
         .file-item:hover {
             transform: translateY(-2px);
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
         }
+
         .loading {
             animation: spin 1s linear infinite;
         }
+
         @keyframes spin {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
         }
+
         .success-animation {
             animation: bounce 0.6s ease-in-out;
         }
+
         @keyframes bounce {
-            0%, 20%, 60%, 100% { transform: translateY(0); }
-            40% { transform: translateY(-10px); }
-            80% { transform: translateY(-5px); }
+
+            0%,
+            20%,
+            60%,
+            100% {
+                transform: translateY(0);
+            }
+
+            40% {
+                transform: translateY(-10px);
+            }
+
+            80% {
+                transform: translateY(-5px);
+            }
         }
     </style>
 </head>
+
 <body class="bg-gray-50 min-h-screen">
     <!-- Header -->
     <header class="bg-white shadow-sm border-b">
         <div class="max-w-6xl mx-auto px-4 py-6">
             <div class="flex items-center justify-between">
-                <div class="flex items-center space-x-3">
-                    <div class="bg-blue-600 text-white p-3 rounded-lg">
-                        <i class="fas fa-file-pdf text-xl"></i>
-                    </div>
-                    <div>
-                        <h1 class="text-2xl font-bold text-gray-900">PDF Merger</h1>
-                        <p class="text-gray-600">Combine multiple PDF files into one</p>
+                <div class="flex items-center space-x-4">
+                    <!-- Logo using developer photo -->
+                    <img src="/static/images/CV_Photo.jpg" alt="Md Ataullah Khan Rifat - Logo"
+                        class="w-12 h-12 rounded-full object-cover border-2 border-blue-200 shadow-md">
+                    <div class="flex items-center space-x-3">
+                        <div class="bg-blue-600 text-white p-3 rounded-lg">
+                            <i class="fas fa-file-pdf text-xl"></i>
+                        </div>
+                        <div>
+                            <h1 class="text-2xl font-bold text-gray-900">PDF Merger</h1>
+                            <p class="text-gray-600">Combine multiple PDF files into one</p>
+                            <p class="text-xs text-gray-500">Developed by <span class="text-blue-600 font-semibold">Md
+                                    Ataullah Khan Rifat</span></p>
+                        </div>
                     </div>
                 </div>
-                <div class="hidden md:block">
-                    <div class="flex items-center space-x-4 text-sm text-gray-500">
-                        <span><i class="fas fa-shield-alt mr-1"></i> Secure</span>
-                        <span><i class="fas fa-bolt mr-1"></i> Fast</span>
-                        <span><i class="fas fa-mobile-alt mr-1"></i> Mobile-friendly</span>
+                <div class="flex items-center space-x-4">
+                    <div class="hidden md:block">
+                        <div class="flex items-center space-x-4 text-sm text-gray-500">
+                            <span><i class="fas fa-shield-alt mr-1"></i> Secure</span>
+                            <span><i class="fas fa-bolt mr-1"></i> Fast</span>
+                            <span><i class="fas fa-mobile-alt mr-1"></i> Mobile-friendly</span>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -70,14 +145,16 @@
             </div>
 
             <!-- Drop Zone -->
-            <div id="dropZone" class="border-2 border-dashed border-gray-300 rounded-lg p-12 text-center hover:border-gray-400 transition-colors cursor-pointer">
+            <div id="dropZone"
+                class="border-2 border-dashed border-gray-300 rounded-lg p-12 text-center hover:border-gray-400 transition-colors cursor-pointer">
                 <div class="flex flex-col items-center">
                     <div class="bg-blue-100 text-blue-600 p-4 rounded-full mb-4">
                         <i class="fas fa-cloud-upload-alt text-2xl"></i>
                     </div>
                     <h3 class="text-lg font-medium text-gray-900 mb-2">Drop PDF files here</h3>
                     <p class="text-gray-500 mb-4">or</p>
-                    <button type="button" class="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition-colors">
+                    <button type="button"
+                        class="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition-colors">
                         <i class="fas fa-folder-open mr-2"></i>Choose Files
                     </button>
                     <p class="text-xs text-gray-400 mt-3">Maximum file size: 50MB per file</p>
@@ -109,7 +186,8 @@
                 <div class="text-sm text-gray-600">
                     <span id="fileCount">0</span> files selected
                 </div>
-                <button id="mergeBtn" class="bg-green-600 text-white px-8 py-3 rounded-lg hover:bg-green-700 transition-colors disabled:bg-gray-400 disabled:cursor-not-allowed">
+                <button id="mergeBtn"
+                    class="bg-green-600 text-white px-8 py-3 rounded-lg hover:bg-green-700 transition-colors disabled:bg-gray-400 disabled:cursor-not-allowed">
                     <i class="fas fa-magic mr-2"></i>Merge PDFs
                 </button>
             </div>
@@ -123,6 +201,9 @@
                 </div>
                 <h3 class="text-lg font-medium text-gray-900 mb-2">Merging PDFs...</h3>
                 <p class="text-gray-600">Please wait while we combine your files</p>
+                <div class="mt-4 text-sm text-gray-500">
+                    <i class="fas fa-user-tie mr-1"></i>Processing by Rifat's PDF Engine
+                </div>
             </div>
         </div>
 
@@ -133,12 +214,17 @@
                     <i class="fas fa-check text-2xl"></i>
                 </div>
                 <h3 class="text-lg font-medium text-gray-900 mb-2">PDF Merged Successfully!</h3>
-                <p class="text-gray-600 mb-6">Your files have been combined into a single PDF</p>
+                <p class="text-gray-600 mb-2">Your files have been combined into a single PDF</p>
+                <p class="text-sm text-gray-500 mb-6">
+                    <i class="fas fa-heart text-red-500 mr-1"></i>Processed with care by Md Ataullah Khan Rifat's system
+                </p>
                 <div class="flex items-center justify-center space-x-4">
-                    <button id="downloadBtn" class="bg-blue-600 text-white px-8 py-3 rounded-lg hover:bg-blue-700 transition-colors">
+                    <button id="downloadBtn"
+                        class="bg-blue-600 text-white px-8 py-3 rounded-lg hover:bg-blue-700 transition-colors">
                         <i class="fas fa-download mr-2"></i>Download PDF
                     </button>
-                    <button id="newMergeBtn" class="bg-gray-600 text-white px-8 py-3 rounded-lg hover:bg-gray-700 transition-colors">
+                    <button id="newMergeBtn"
+                        class="bg-gray-600 text-white px-8 py-3 rounded-lg hover:bg-gray-700 transition-colors">
                         <i class="fas fa-plus mr-2"></i>Merge More Files
                     </button>
                 </div>
@@ -168,7 +254,8 @@
                     <i class="fas fa-lock text-xl"></i>
                 </div>
                 <h3 class="font-semibold text-gray-900 mb-2">Secure & Private</h3>
-                <p class="text-gray-600 text-sm">Files are processed locally and automatically deleted after download</p>
+                <p class="text-gray-600 text-sm">Files are processed locally and automatically deleted after download
+                </p>
             </div>
             <div class="bg-white rounded-lg p-6 text-center">
                 <div class="bg-green-100 text-green-600 p-4 rounded-full inline-block mb-4">
@@ -185,13 +272,51 @@
                 <p class="text-gray-600 text-sm">Works perfectly on all devices - desktop, tablet, and mobile</p>
             </div>
         </div>
+
+        <!-- About Developer Section -->
+        <div class="bg-white rounded-xl shadow-sm border p-8 mt-12">
+            <div class="text-center">
+                <div class="flex items-center justify-center mb-6">
+                    <img src="/static/images/CV_Photo.jpg" alt="Md Ataullah Khan Rifat"
+                        class="w-20 h-20 rounded-full object-cover border-4 border-blue-200 shadow-lg mr-6">
+                    <div class="text-left">
+                        <h3 class="text-2xl font-bold text-gray-900">About the Developer</h3>
+                        <h4 class="text-xl text-blue-600 font-semibold">Md Ataullah Khan Rifat</h4>
+                        <p class="text-gray-600">Software Engineer</p>
+                    </div>
+                </div>
+                <p class="text-gray-700 max-w-3xl mx-auto leading-relaxed">
+                    This PDF Merger application was developed by <strong>Md Ataullah Khan Rifat</strong>, a passionate
+                    software engineer with expertise in web development, cloud technologies, and user experience design.
+                    The application
+                    is built with modern technologies including Flask, Python, and responsive web design principles to
+                    provide you
+                    with the best PDF merging experience.
+                </p>
+                <div class="flex items-center justify-center mt-6 space-x-6 text-sm text-gray-600">
+                    <span><i class="fas fa-code mr-2 text-blue-600"></i>Python & Flask</span>
+                    <span><i class="fas fa-paint-brush mr-2 text-green-600"></i>Modern UI/UX</span>
+                    <span><i class="fas fa-shield-alt mr-2 text-purple-600"></i>Security Focused</span>
+                    <span><i class="fas fa-rocket mr-2 text-orange-600"></i>Performance Optimized</span>
+                </div>
+            </div>
+        </div>
     </main>
 
     <!-- Footer -->
     <footer class="bg-white border-t mt-12">
-        <div class="max-w-6xl mx-auto px-4 py-6">
-            <div class="text-center text-gray-600">
-                <p>&copy; 2025 PDF Merger. Built with Flask and Tailwind CSS.</p>
+        <div class="max-w-6xl mx-auto px-4 py-8">
+            <div class="text-center">
+                <div class="flex items-center justify-center mb-4">
+                    <img src="/static/images/CV_Photo.jpg" alt="Md Ataullah Khan Rifat"
+                        class="w-8 h-8 rounded-full object-cover border border-gray-300 mr-3">
+                    <p class="text-gray-600">
+                        &copy; 2025 PDF Merger. Developed with <i class="fas fa-heart text-red-500"></i> by
+                        <span class="font-semibold text-blue-600">Md Ataullah Khan Rifat</span>
+                    </p>
+                </div>
+                <p class="text-sm text-gray-500">Built with Flask, Python, and Tailwind CSS | Secure • Fast • Reliable
+                </p>
             </div>
         </div>
     </footer>
@@ -255,7 +380,7 @@
         // File handling
         function handleFiles(files) {
             const pdfFiles = files.filter(file => file.type === 'application/pdf');
-            
+
             if (pdfFiles.length === 0) {
                 showError('Please select only PDF files.');
                 return;
@@ -295,19 +420,19 @@
 
         function displayFiles() {
             filesList.innerHTML = '';
-            
+
             uploadedFiles.forEach((file, index) => {
                 const fileItem = document.createElement('div');
                 fileItem.className = 'file-item bg-gray-50 border rounded-lg p-4 flex items-center justify-between';
                 fileItem.dataset.fileId = file.id;
-                
+
                 fileItem.innerHTML = `
                     <div class="flex items-center space-x-3">
                         <div class="bg-red-100 text-red-600 p-2 rounded">
                             <i class="fas fa-file-pdf"></i>
                         </div>
                         <div>
-                            <div class="font-medium text-gray-900">${file.original_name}</div>
+                            <div class="font-medium text-gray-900">${file.name}</div>
                             <div class="text-sm text-gray-500">${formatFileSize(file.size)}</div>
                         </div>
                     </div>
@@ -320,7 +445,7 @@
                         </button>
                     </div>
                 `;
-                
+
                 filesList.appendChild(fileItem);
             });
 
@@ -336,7 +461,7 @@
             sortable = Sortable.create(filesList, {
                 animation: 150,
                 handle: '.fa-grip-vertical',
-                onEnd: function(evt) {
+                onEnd: function (evt) {
                     const item = uploadedFiles.splice(evt.oldIndex, 1)[0];
                     uploadedFiles.splice(evt.newIndex, 0, item);
                 }
@@ -346,7 +471,7 @@
         function removeFile(fileId) {
             uploadedFiles = uploadedFiles.filter(file => file.id !== fileId);
             displayFiles();
-            
+
             if (uploadedFiles.length === 0) {
                 hideFilesSection();
             }
@@ -465,4 +590,5 @@
         }
     </script>
 </body>
+
 </html>

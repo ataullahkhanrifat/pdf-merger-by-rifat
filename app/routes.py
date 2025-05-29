@@ -99,10 +99,19 @@ def download_file(filename):
             download_name=filename,
             mimetype='application/pdf'
         )
-    
     except Exception as e:
         current_app.logger.error(f"Download error: {str(e)}")
         return jsonify({'error': 'Download failed'}), 500
+
+@main_bp.route('/static/images/<filename>')
+def serve_image(filename):
+    """Serve static images"""
+    try:
+        static_images_path = os.path.join(current_app.root_path, 'static', 'images')
+        return send_from_directory(static_images_path, filename)
+    except Exception as e:
+        current_app.logger.error(f"Static file error: {str(e)}")
+        return jsonify({'error': 'File not found'}), 404
 
 @main_bp.errorhandler(413)
 def too_large(e):

@@ -1,9 +1,0 @@
-services:
-  - type: web
-    name: pdf-merger
-    env: docker
-    dockerfilePath: ./Dockerfile
-    plan: free
-    envVars:
-      - key: FLASK_ENV
-        value: production

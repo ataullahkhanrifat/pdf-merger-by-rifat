@@ -27,8 +27,8 @@ ENV PYTHONUNBUFFERED=1
 RUN useradd -m -u 1000 appuser && chown -R appuser:appuser /app
 USER appuser
 
-# Expose port (Render uses PORT env variable)
-EXPOSE $PORT
+# Expose port
+EXPOSE 5000
 
 # Run the application
-CMD gunicorn --bind 0.0.0.0:$PORT --workers 2 --timeout 180 app:app
+CMD ["python", "app.py"]

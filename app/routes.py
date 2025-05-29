@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, request, jsonify, send_file, send_from_directory, current_app
+ from flask import Blueprint, render_template, request, jsonify, send_file, send_from_directory, current_app
 from app.services.pdf_service import PDFService
 from app.utils.file_utils import FileUtils
 from app.utils.validators import validate_file
@@ -99,7 +99,7 @@ def download_file(filename):
             download_name=filename,
             mimetype='application/pdf'
         )
-    except Exception as e:
+      except Exception as e:
         current_app.logger.error(f"Download error: {str(e)}")
         return jsonify({'error': 'Download failed'}), 500
 

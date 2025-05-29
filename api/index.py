@@ -5,19 +5,22 @@ from PyPDF2 import PdfMerger
 from werkzeug.utils import secure_filename
 import logging
 import traceback
+import tempfile
 
 # Configure logging
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 # Create Flask app
-app = Flask(__name__)
-app.config['MAX_CONTENT_LENGTH'] = 50 * 1024 * 1024  # Keep 50MB max file size
-app.config['UPLOAD_FOLDER'] = 'uploads'
+app = Flask(__name__, 
+           template_folder='../templates',
+           static_folder='../static')
 
-# Ensure upload directory exists
-os.makedirs(app.config['UPLOAD_FOLDER'], exist_ok=True)
-os.makedirs('static/images', exist_ok=True)
+app.config['MAX_CONTENT_LENGTH'] = 50 * 1024 * 1024  # 50MB max file size
+
+# Use temp directory for uploads in serverless
+UPLOAD_FOLDER = tempfile.gettempdir()
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 @app.route('/')
 def index():
@@ -204,21 +207,8 @@ def health_check():
     return jsonify({
         'status': 'healthy',
         'service': 'pdf-merger',
-        'version': '1.0.0',
-        'upload_folder': app.config['UPLOAD_FOLDER'],
-        'max_content_length': app.config['MAX_CONTENT_LENGTH']
+        'version': '1.0.0'
     })
 
-@app.errorhandler(413)
-def too_large(e):
-    """Handle file too large error"""
-    return jsonify({'error': 'File too large. Maximum size is 50MB per file.'}), 413
-
-if __name__ == '__main__':
-    # For local development
-    app.run(host='0.0.0.0', port=5000, debug=True)
-else:
-    # For production deployment
-    import os
-    port = int(os.environ.get('PORT', 5000))
-    app.run(host='0.0.0.0', port=port, debug=False)
+# Export the app for Vercel
+app = app

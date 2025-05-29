@@ -23,12 +23,12 @@ ENV FLASK_APP=app.py
 ENV FLASK_ENV=production
 ENV PYTHONUNBUFFERED=1
 
-# Expose port
-EXPOSE 5000
-
-# Create non-root user for security
+# Create non-root user
 RUN useradd -m -u 1000 appuser && chown -R appuser:appuser /app
 USER appuser
 
-# Run the application with increased timeout for multiple file processing
-CMD ["gunicorn", "--bind", "0.0.0.0:5000", "--workers", "2", "--timeout", "180", "--worker-class", "sync", "--max-requests", "50", "app:app"]
+# Expose port (Render uses PORT env variable)
+EXPOSE $PORT
+
+# Run the application
+CMD gunicorn --bind 0.0.0.0:$PORT --workers 2 --timeout 180 app:app

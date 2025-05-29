@@ -14,7 +14,8 @@ logger = logging.getLogger(__name__)
 # Create Flask app
 app = Flask(__name__, 
            template_folder='../templates',
-           static_folder='../static')
+           static_folder='../static',
+           root_path='../')
 
 app.config['MAX_CONTENT_LENGTH'] = 50 * 1024 * 1024  # 50MB max file size
 
@@ -210,5 +211,6 @@ def health_check():
         'version': '1.0.0'
     })
 
-# Export the app for Vercel
+# Export the app for Vercel - MUST have the Flask app exposed here for Vercel to find it
+# It needs to be called 'app' for Vercel's Python runtime to detect it correctly
 app = app

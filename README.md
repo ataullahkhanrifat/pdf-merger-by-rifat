@@ -3,8 +3,6 @@
 
 A professional, secure, and user-friendly web-based PDF merging tool built with Flask and modern web technologies.
 
-![PDF Merger](app/static/images/CV_Photo.jpg)
-
 ## 🚀 **QUICK START - Choose Your Method**
 
 ### 🐳 **Method 1: Docker (EASIEST)**

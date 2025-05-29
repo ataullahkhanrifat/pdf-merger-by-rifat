@@ -1,5 +1,10 @@
 # PDF Merger Application
 
+![License](https://img.shields.io/badge/license-MIT-blue.svg)
+![Python](https://img.shields.io/badge/python-3.8+-blue.svg)
+![Flask](https://img.shields.io/badge/flask-2.3.3-green.svg)
+![Docker](https://img.shields.io/badge/docker-ready-blue.svg)
+
 A modern PDF merging tool that combines multiple PDF files into one. Built with Flask and Docker.
 
 **Developed by: Md Ataullah Khan Rifat**
@@ -108,6 +113,10 @@ cp Photo/* static/images/CV_Photo.jpg
 ```
 
 **Python not found?** Install from: https://www.python.org/downloads/
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ---
 
